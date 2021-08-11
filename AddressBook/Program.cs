@@ -10,7 +10,7 @@ namespace AddressBook
             while (true)
             {
 
-                Console.WriteLine("\n1.Add details to Contact list \n2.View details in Contact List\n3.Exit");
+                Console.WriteLine("\n1.Add details to Contact list \n2.View details in Contact List\n3.Edit the details\n4.Exit");
                 Console.WriteLine("Enter the option:");
                 switch (Convert.ToInt32(Console.ReadLine()))
                 {
@@ -21,7 +21,10 @@ namespace AddressBook
                         AddressBookDetails.ViewContact();
                         break;
                     case 3:
-                        Console.WriteLine("Exited");
+                        AddressBookDetails.EditDetails();
+                        break;
+                    case 4:
+                        Console.WriteLine("exited");
                         return;
 
                 }
