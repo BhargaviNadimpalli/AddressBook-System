@@ -4,38 +4,61 @@ using System.Text;
 
 namespace AddressBook
 {
-    public class Contact
+    class AddressBookDetails
     {
-        public string FirstName;
-        public string LastName;
-        public string Address;
-        public string City;
-        public string State;
-        public int Zip;
-        public int Phone_Number;
-        public string Email;
-        public void ContactDetails(string FirstName, string LastName, string Address, string City, string State, int Zip, int Phone_Number, string Email)
+        private static List<Person> contacts = new List<Person>();
+        public static void AddContact()
         {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Address = Address; ;
-            this.City = City;
-            this.State = State;
-            this.Zip = Zip;
-            this.Phone_Number = Phone_Number;
-            this.Email = Email;
-        }
-        public void Display()
-        {
+            Person obj = new Person();
 
-            Console.WriteLine("First Name : " + this.FirstName);
-            Console.WriteLine("Last Name : "+ this.LastName);
-            Console.WriteLine("Address : "+ this.Address);
-            Console.WriteLine("City : "+ this.City);
-            Console.WriteLine("State : "+ this.State);
-            Console.WriteLine("Zip Code : "+ this.Zip);
-            Console.WriteLine("Phone Number : "+ this.Phone_Number);
-            Console.WriteLine("Email Id : "+ this.Email);
+            Console.Write("Enter First Name: ");
+            obj.FirstName = Console.ReadLine();
+            Console.Write("Enter Last Name: ");
+            obj.LastName = Console.ReadLine();
+            Console.Write("Enter Address: ");
+            obj.Address = Console.ReadLine();
+            Console.Write("Enter City: ");
+            obj.City = Console.ReadLine();
+            Console.Write("Enter State: ");
+            obj.State = Console.ReadLine();
+            Console.Write("Enter Zip Code: ");
+            obj.ZipCode = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Email : ");
+            obj.Email = Console.ReadLine();
+            Console.Write("Enter Phone Number : ");
+            obj.PhoneNumber = Convert.ToInt32(Console.ReadLine());
+
+            contacts.Add(obj);
+
+            Console.WriteLine("Successfully Added");
+        }
+
+        public static void ViewContact()
+        {
+            if (contacts.Count > 0)
+            {
+                Console.WriteLine("Your Contact List is");
+                foreach (var x in contacts)
+                {
+                    PrintValues(x);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Address Book is Empty");
+            }
+        }
+        public static void PrintValues(Person x)
+        {
+            Console.WriteLine($"First Name : {x.FirstName}");
+            Console.WriteLine($"Last Name : {x.LastName}");
+            Console.WriteLine($"Address : {x.Address}");
+            Console.WriteLine($"City : {x.City}");
+            Console.WriteLine($"State : {x.State}");
+            Console.WriteLine($"Zip Code: {x.ZipCode}");
+            Console.WriteLine($"Phone Number: {x.PhoneNumber}");
+            Console.WriteLine($"Email: {x.Email}");
+
         }
     }
 }

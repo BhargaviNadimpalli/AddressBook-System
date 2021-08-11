@@ -6,11 +6,27 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            Contact obj = new Contact();
-            obj.ContactDetails("Bhargavi", "Nadimpalli", "GolfCity", "Lucknow", "UP", 500252, 938102999, "bhargavinadimpalli@gmail.com");
-            obj.Display();
+            Console.WriteLine("Welcome to the Address Book Program");
+            while (true)
+            {
 
-            
+                Console.WriteLine("\n1.Add details to Contact list \n2.View details in Contact List\n3.Exit");
+                Console.WriteLine("Enter the option:");
+                switch (Convert.ToInt32(Console.ReadLine()))
+                {
+                    case 1:
+                        AddressBookDetails.AddContact();
+                        break;
+                    case 2:
+                        AddressBookDetails.ViewContact();
+                        break;
+                    case 3:
+                        Console.WriteLine("Exited");
+                        return;
+
+                }
+
+            }
         }
     }
 }
