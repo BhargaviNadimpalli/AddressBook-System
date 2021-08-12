@@ -6,45 +6,83 @@ namespace AddressBook
 {
     class AddressBookDetails
     {
-        private static List<Person> contacts = new List<Person>();
-        public static void AddContact()
+        private List<Person> contacts;
+        //address book dictioanry to store values
+        private static Dictionary<string, List<Person>> addressBookDictionary = new Dictionary<string, List<Person>>();
+        public void AddContact()
         {
-            Person obj = new Person();
-                                                         ///Mulitiple contacts
-            Console.Write("Enter First Name: ");
-            obj.FirstName = Console.ReadLine();
-            Console.Write("Enter Last Name: ");
-            obj.LastName = Console.ReadLine();
-            Console.Write("Enter Address: ");
-            obj.Address = Console.ReadLine();
-            Console.Write("Enter City: ");
-            obj.City = Console.ReadLine();
-            Console.Write("Enter State: ");
-            obj.State = Console.ReadLine();
-            Console.Write("Enter Zip Code: ");
-            obj.ZipCode = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter Email : ");
-            obj.Email = Console.ReadLine();
-            Console.Write("Enter Phone Number : ");
-            obj.PhoneNumber = Convert.ToInt32(Console.ReadLine());
+            string addressBookName;
+            contacts = new List<Person>();
+            while (true)
+            {
+                Console.WriteLine("Enter The Name of the Address Book");
+                addressBookName = Console.ReadLine();
+                //Checking uniqueness of address books
+                if (addressBookDictionary.Count > 0)
+                {
+                    if (addressBookDictionary.ContainsKey(addressBookName))
+                    {
+                        Console.WriteLine("This name of address book already exists");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
 
-            contacts.Add(obj);
+            }
 
-            Console.WriteLine("Successfully Added");
+            Console.Write("Enter Number of contacts you want to add:");
+            int numOfContacts = Convert.ToInt32(Console.ReadLine());
+            while (numOfContacts > 0)
+            {
+                //object for person class
+                Person person = new Person();
+
+                Console.Write("Enter First Name: ");
+                person.FirstName = Console.ReadLine();
+                Console.Write("Enter Last Name: ");
+                person.LastName = Console.ReadLine();
+                Console.Write("Enter Address: ");
+                person.Address = Console.ReadLine();
+                Console.Write("Enter City: ");
+                person.City = Console.ReadLine();
+                Console.Write("Enter State: ");
+                person.State = Console.ReadLine();
+                Console.Write("Enter Zip Code: ");
+                person.ZipCode = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter Phone Number: ");
+                double PhoneNumber = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Enter Email-id: ");
+                string Email = Console.ReadLine();
+                contacts.Add(person);
+                Console.WriteLine("----------------------------------");
+                numOfContacts--;
+            }
+            //adding into address book dictionary
+            addressBookDictionary.Add(addressBookName, contacts);
+            Console.WriteLine("\t \t \tSuccessfully Added");
         }
 
-        public static void ViewContact()
+
+        public void ViewContact()
         {
-            if (contacts.Count > 0)
-            {
-                Console.WriteLine("Your Contact List is");
-                foreach (var x in contacts)
+                if (addressBookDictionary.Count > 0)
                 {
-                    PrintValues(x);
-                    Console.WriteLine("-----------------------\n");
+                    foreach (KeyValuePair<string, List<Person>> dict in addressBookDictionary)
+                    {
+                        Console.WriteLine($"\t \t \t{dict.Key}");
+                        foreach (var addressBook in dict.Value)
+                        {
+                            PrintValues(addressBook);
+                        Console.WriteLine("-----------------------\n");
+                    }
+                    }
                 }
-                
-            }
             else
             {
                 Console.WriteLine("Address Book is Empty");
@@ -62,7 +100,7 @@ namespace AddressBook
             Console.WriteLine($"Email: {x.Email}");
 
         }
-        public static void EditDetails()
+        public void EditDetails()
         {
             int a;
             if (contacts.Count > 0)
@@ -145,7 +183,7 @@ namespace AddressBook
                 Console.WriteLine("Your contact list is empty");
             }
         }
-        public static void DeleteDetails()
+        public void DeleteDetails()
         {
             int a = 0;
             if (contacts.Count > 0)
