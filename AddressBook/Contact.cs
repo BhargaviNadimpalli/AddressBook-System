@@ -10,7 +10,7 @@ namespace AddressBook
         public static void AddContact()
         {
             Person obj = new Person();
-
+                                                         ///Mulitiple contacts
             Console.Write("Enter First Name: ");
             obj.FirstName = Console.ReadLine();
             Console.Write("Enter Last Name: ");
@@ -41,7 +41,9 @@ namespace AddressBook
                 foreach (var x in contacts)
                 {
                     PrintValues(x);
+                    Console.WriteLine("-----------------------\n");
                 }
+                
             }
             else
             {
@@ -155,7 +157,7 @@ namespace AddressBook
                 {
                     if (deleteName.ToLower() == x.FirstName.ToLower())
                     {
-                        //removing from list
+                        
                         Console.WriteLine("\t \t \tDELETED");
                         Console.WriteLine($"You have deleted {x.FirstName} contact");
                         contacts.Remove(x);
@@ -167,7 +169,7 @@ namespace AddressBook
                 {
                     Console.WriteLine("The name you entered is not in address book");
                 }
-                }
+            }
             else
             {
                 Console.WriteLine("Your contact list is empty");
